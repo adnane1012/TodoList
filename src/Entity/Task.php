@@ -5,9 +5,15 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     shortName="task",
+ *     normalizationContext={"groups"={"task:read"}},
+ *     denormalizationContext={"groups"={"task:write"}}
+ *  )
  * @ORM\Entity(repositoryClass=TaskRepository::class)
  */
 class Task
@@ -20,27 +26,33 @@ class Task
     private $id;
 
     /**
+     * @Groups({"task:read", "task:write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="integer")
+     * @Groups({"task:read", "task:write"})
+     * @ORM\Column(type="integer",nullable=true)
      */
     private $position;
 
     /**
-     * @ORM\ManyToOne(targetEntity=TaskList::class, inversedBy="Task")
+     * @Groups({"task:read", "task:write"})
+     *
+     * @ORM\ManyToOne(targetEntity=TaskList::class, inversedBy="task")
      * @ORM\JoinColumn(nullable=false)
      */
     private $taskList;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
 
     /**
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime_immutable")
      */
     private $updatedAt;

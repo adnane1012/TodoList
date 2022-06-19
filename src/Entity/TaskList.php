@@ -7,9 +7,15 @@ use App\Repository\TaskListRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     shortName="task-list",
+ *     normalizationContext={"groups"={"task-list:read"}},
+ *     denormalizationContext={"groups"={"task-list:write"}}
+ * )
  * @ORM\Entity(repositoryClass=TaskListRepository::class)
  */
 class TaskList
@@ -23,21 +29,26 @@ class TaskList
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Groups({"task-list:read", "task-list:write"})
      */
     private $title;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
 
     /**
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime_immutable")
      */
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="taskList")
+     * @Groups({"task-list:read", "task-list:write"})
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="taskList", cascade={"persist"} , orphanRemoval=true)
      */
     private $task;
 

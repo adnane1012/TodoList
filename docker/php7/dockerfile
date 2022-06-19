@@ -1,5 +1,5 @@
-FROM php:7.3-apache-stretch
-MAINTAINER Adnane Nouri <adnane.nouri@inetum.com>
+FROM php:7.4-apache
+MAINTAINER Adnane Nouri <nouri.adnane.pro@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -65,6 +65,11 @@ RUN yes | pecl install xdebug \
 
 
 RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
+
+# Custom aliases
+RUN alias l='ls -a'
+RUN alias ll='ls -l'
+RUN alias la='ls -la'
 
 VOLUME ["/var/www/todo_list"]
 
