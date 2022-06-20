@@ -54,12 +54,12 @@ Installation
 ```bash
 # builder les differents containers
 docker-compose up -d
-composer install
 
 # dans le container 
 docker exec  -it php7 /bin/bash
 
 # executer ces comandes suivantes
+composer install
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
 php bin/console lexie:jwt:generate-keypair
