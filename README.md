@@ -46,7 +46,7 @@ Résultat
 --------
 
 * 🕐 Temps passé dessus (approximativement) : 1 journée.
-* 💼 Le repository GIT : 
+* 💼 Le repository GIT : https://github.com/adnane1012/TodoList.git
 
 Installation
 --------
