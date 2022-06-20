@@ -62,7 +62,7 @@ docker exec  -it php7 /bin/bash
 composer install
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
-php bin/console lexie:jwt:generate-keypair
+php bin/console lexik:jwt:generate-keypair
 php bin/console doctrine:fixtures:load
 ```
 
