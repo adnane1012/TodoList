@@ -39,3 +39,46 @@ Q
 !src/Repository/TaskRepository.php,a\4\a461a30596b95033268f2a399e0e84d31bc975e5
 L
 config/packages/routing.yaml,0\0\001fdc7418679b6419e44b1142ab051819764ece
+]
+-config/packages/stof_doctrine_extensions.yaml,7\c\7cb87c9a4b1de7c9f21f28cb8895844127132800
+F
+docker/php7/dockerfile,7\3\731520baebb645ace45359be90304f9e015e1d48
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+O
+config/routes/web_profiler.yaml,6\7\672311d2a7e203158feec05c65a1596673272747
+Q
+!config/packages/web_profiler.yaml,b\0\b0926246bcd5304c762fba15710d63fa9dca8de4
+P
+ config/packages/nelmio_cors.yaml,c\7\c7cee19ef8bd16fdb92a74b9724402fea6a849d2
+]
+-config/packages/lexik_jwt_authentication.yaml,6\5\65c26613ceabd0458d2b780362983469dc4fdec6
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+=
+composer.json,3\9\3957b91a0d8450cea0115cfd5af69eac90d75897
+=
+composer.lock,c\3\c3262e2a0879195bd6a727e90f768bc85ad79ffd
+4
+.env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
+<
+symfony.lock,e\1\e17766cca3407ba620a8cef1c14d37208a74e8a4
+B
+config/routes.yaml,b\a\baef02989dedf0ec859f7bce087a69f29bef2b72
+P
+ src/DataFixtures/AppFixtures.php,b\d\bd40e5504ff9d25586c516537316c24981df19f7
+B
+config/bundles.php,f\a\fa9a09a4e1ae4281250526d3dec214138beb5735
+R
+"src/Controller/FrontController.php,e\c\ec0c6b8f1296bdac73d2b5ebc9148ff8fbc3ef7a
+Q
+!src/Repository/UserRepository.php,9\4\943a623b5e2fd95ea78f6287fc600a6f8e0a5235
+T
+$migrations/Version20220619025409.php,d\8\d8c0aba0644cf662c592946922738140cd8508ac
+T
+$migrations/Version20220619032530.php,6\0\6095c30c33914fd09d873c8098de6ffd1a2c932e
+T
+$migrations/Version20220619124952.php,6\a\6aaef73f915148da7a34850f7db6eed7c976b5ef
+T
+$migrations/Version20220619140754.php,3\e\3e52b0cfad2da78daea11ca6d69f13959d663dc1

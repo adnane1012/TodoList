@@ -8,14 +8,21 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
  *     shortName="task-list",
  *     normalizationContext={"groups"={"task-list:read"}},
- *     denormalizationContext={"groups"={"task-list:write"}}
+ *     denormalizationContext={"groups"={"task-list:write"}},
+ *     itemOperations={
+ *         "get",
+ *         "put"={"security"="object.getUser() == user"},
+ *         "delete"={"security"="object.getUser() == user"},
+ *     }
  * )
+ * @ORM\EntityListeners({"App\Listeners\PrePersistTodoList"})
  * @ORM\Entity(repositoryClass=TaskListRepository::class)
  */
 class TaskList
@@ -28,9 +35,8 @@ class TaskList
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Groups({"task-list:read", "task-list:write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $title;
 
@@ -51,6 +57,13 @@ class TaskList
      * @ORM\OneToMany(targetEntity=Task::class, mappedBy="taskList", cascade={"persist"} , orphanRemoval=true)
      */
     private $task;
+
+    /**
+     * @Groups({"task-list:read", "task-list:write"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="taskLists")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
@@ -124,6 +137,18 @@ class TaskList
                 $task->setTaskList(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?UserInterface $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

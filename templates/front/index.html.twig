@@ -2,44 +2,42 @@
 
 {% block title %} !{% endblock %}
 {% block body %}
- <div id="container" style="background-color: #eee;">
+<div id="container" style="background-color: #eee;">
+</div>
+
+<script id="login" type="x-tmpl-mustache">
       <section class="vh-100 gradient-custom">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
-                            
-                            <div class="mt-md-4">
-                                <img width="300px" class="fas fa-cubes fa-2x me-3" src="{{ asset('bundles/front/img/img.png') }}">
-                                <hr>
-     
-                                <h2 class="fw-bold mb-2 text-uppercase">Todo APP</h2>
-                                <p class="mb-5">Please enter your login and password!</p>
-                                
-                                <div class="form-outline form-black mb-4">
-                                    <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typeEmailX">Email</label>
+                            <form id='loginForm'>
+                                <div class="mt-md-4">
+                                    <img width="300px" class="fas fa-cubes fa-2x me-3" src="{{ asset('bundles/front/img/img.png') }}">
+                                    <hr>
+         
+                                    <h2 class="fw-bold mb-2 text-uppercase">Todo APP</h2>
+                                    <p class="mb-5">Please enter your login and password!</p>
+                                    
+                                    <div class=" mb-4">
+                                        <label class="form-label" for="typeEmailX">Email</label>
+                                        <input type="email" name='username' style='' id="typeEmailX" class="form-control form-control-lg" />
+                                    </div>
+                                    
+                                    <div class="form  mb-4">
+                                        <label class="form-label" for="typePasswordX">Password</label>
+                                        <input type="password" name='password' style='' id="typePasswordX" class="form-control form-control-lg" />
+                                    </div>
+                                    
+                                    <button class="btn btn-outline-info btn-lg px-5" type="submit">Login</button>
+                                    
                                 </div>
-                                
-                                <div class="form-outline form-black mb-4">
-                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typePasswordX">Password</label>
-                                </div>
-                                
-                                
-                                <button class="btn btn-outline-info btn-lg px-5" type="submit">Login</button>
- 
-                                
-                            </div>
+                            </form>
     
-                         
-
                         </div>
-                        <div class="card-footer text-center p-3">
-                            <div class="spinner-grow " role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
+                        <div class="card-footer request-info text-center p-3">
+                        
                         </div>
                     </div>
                     
@@ -47,109 +45,68 @@
             </div>
         </div>
     </section>
-     <section class="vh-100 " style="background-color: #eee;">
+</script>
+{% verbatim %}
+<script id="todoList" type="x-tmpl-mustache">
+     <section class="vh-100 py-5 h-100 " style="background-color: #eee;">
          <div class="container ">
              <div class="row d-flex justify-content-center align-items-center h-100">
                  <div class="col-md-12 col-xl-10">
-                    
-                     <div class="card">
+                      <div class="card">
                          <div class="card-header p-3">
-                             <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Todo-list</h5>
+                             <h5  style="float: left;" class="mb-0 float-md-left"><i class="fas fa-solid fa-list me-2"></i>Todo-list</h5>
+                            <button id="btn-logout" type="button" style="float: right;" class="btn btn-light btn-rounded float-md-right">Logout</button>
+
                          </div>
                          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative;">
-                             <form class="d-flex justify-content-center align-items-center mb-4">
+                             <form id="todoListForm" class="d-flex justify-content-center align-items-center mb-4">
                                  <div class="form-outline flex-fill">
-                                     <input type="text" id="form2" class="form-control">
-                                     <label class="form-label" for="form2" style="margin-left: 0px;">New task...</label>
+                                     <input type="text" name="title"  class="form-control">
+                                     <label class="form-label" for="todoList" style="margin-left: 0px;">New task...</label>
                                      <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 71.2px;"></div><div class="form-notch-trailing"></div></div></div>
                                  <button type="submit" class="btn btn-info ms-2">Add</button>
                              </form>
                              <table class="table mb-0">
                                  <thead>
                                  <tr>
-                                      <th scope="col">Task</th>
-                                      
-                                     <th scope="col">Actions</th>
+                                    <th scope="col col-md-8">Todos</th>
+                                     <th scope="col col-md-2">Actions</th>
                                  </tr>
                                  </thead>
                                  <tbody>
-                                 <tr class="fw-normal">
-                                     
-                                     <td class="align-middle">
-                                         <span>Call Sam For payments</span>
-                                     </td>
-                                
-                                     <td class="align-middle">
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Edit"><i class="fa-solid fa-pen-to-square me-3"></i></a>
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i class="fas fa-trash-alt text-danger"></i></a>
-                                     </td>
-                                 </tr>
-                                 <tr class="fw-normal">
-                                     
-                                     <td class="align-middle">Make payment to Bluedart</td>
-                                   
-                                     <td class="align-middle">
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Edit"><i class="fa-solid fa-pen-to-square me-3"></i></a>
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
-                                                     class="fas fa-trash-alt text-danger"></i></a>
-                                     </td>
-                                 </tr>
-                                 <tr class="fw-normal">
-                                     
-                                     <td class="align-middle">Office rent</td>
-                               
-                                     <td class="align-middle">
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Done"><i class="fa-solid fa-pen-to-square me-3"></i></a>
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
-                                                     class="fas fa-trash-alt text-danger"></i></a>
-                                     </td>
-                                 </tr>
-                                 <tr class="fw-normal">
-                                     
-                                     <td class="align-middle">Office grocery shopping</td>
-                              
-                                     <td class="align-middle">
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Done"><i class="fa-solid fa-pen-to-square me-3"></i></a>
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
-                                                     class="fas fa-trash-alt text-danger"></i></a>
-                                     </td>
-                                 </tr>
-                                 <tr class="fw-normal">
-                                     
-                                     <td class="align-middle">Ask for Lunch to Clients</td>
-                          
-                                     <td class="align-middle">
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Done"><i class="fa-solid fa-pen-to-square me-3"></i></a>
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
-                                                     class="fas fa-trash-alt text-danger"></i></a>
-                                     </td>
-                                 </tr>
-                                 <tr class="fw-normal">
-                                     
-                                     <td class="border-0 align-middle">Create weekly tasks plan</td>
-                              
-                                     <td class="border-0 align-middle">
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Done"><i class="fa-solid fa-pen-to-square me-3"></i></a>
-                                         <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
-                                                     class="fas fa-trash-alt text-warning"></i></a>
-                                     </td>
-                                 </tr>
+                                    {{#.}}
+                                       <tr class="fw-normal">
+                                         
+                                         <td class="align-middle col col-md-8">
+                                             <span>{{title}}</span>
+                                         </td>
+                                    
+                                         <td class="align-middle col col-md-2">
+                                             <a href="#!" data-mdb-toggle="tooltip" title="Edit"><i class="fa-solid fa-pen-to-square me-3"></i></a>
+                                             <a href="#!" data-id='{{@id}}' class='removeTodo' data-mdb-toggle="tooltip" title="Remove"><i class="fas fa-trash-alt text-danger"></i></a>
+                                         </td>
+                                     </tr>
+                                  {{/.}}
                                  </tbody>
                              </table>
                         
                          </div>
-                         <div class="card-footer text-center p-3">
-                             <div class="spinner-grow " role="status">
+                         <div class="card-footer request-info text-center p-3">
+                              <div class="spinner-grow " role="status">
                                  <span class="visually-hidden">Loading...</span>
                              </div>
-                         </div>
+                          </div>
                      </div>
                 
                  </div>
              </div>
          </div>
      </section>
-    
+</script>
+{% endverbatim %}
+
+<script id="task" type="x-tmpl-mustache">
+
      <section class="vh-100 " style="background-color: #eee;">
          <div class="container ">
              <div class="row d-flex justify-content-center align-items-center h-100">
@@ -241,18 +198,15 @@
                              </table>
                         
                          </div>
-                         <div class="card-footer text-center p-3">
-                             <div class="spinner-grow " role="status">
-                                 <span class="visually-hidden">Loading...</span>
-                             </div>
-                         </div>
+                         <div class="card-footer request-info text-center p-3">
+                          </div>
                      </div>
                 
                  </div>
              </div>
          </div>
      </section>
- </div>
+ </script>
  
 
 {% endblock %}

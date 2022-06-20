@@ -67,9 +67,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $plainPassword;
 
+    /**
+     * @ORM\OneToMany(targetEntity=TaskList::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $taskLists;
+
 
     public function __construct()
     {
+        $this->taskLists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -171,6 +177,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword(string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TaskList>
+     */
+    public function getTaskLists(): Collection
+    {
+        return $this->taskLists;
+    }
+
+    public function addTaskList(TaskList $taskList): self
+    {
+        if (!$this->taskLists->contains($taskList)) {
+            $this->taskLists[] = $taskList;
+            $taskList->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTaskList(TaskList $taskList): self
+    {
+        if ($this->taskLists->removeElement($taskList)) {
+            // set the owning side to null (unless already changed)
+            if ($taskList->getUser() === $this) {
+                $taskList->setUser(null);
+            }
+        }
 
         return $this;
     }

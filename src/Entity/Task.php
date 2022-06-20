@@ -12,7 +12,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *     shortName="task",
  *     normalizationContext={"groups"={"task:read"}},
- *     denormalizationContext={"groups"={"task:write"}}
+ *     denormalizationContext={"groups"={"task:write"}},
+ *     itemOperations={
+ *         "get",
+ *         "put"={"security"="object.getTaskList().getUser() == user"},
+ *         "delete"={"security"="object.getTaskList().getUser() == user"},
+ *     }
  *  )
  * @ORM\Entity(repositoryClass=TaskRepository::class)
  */
